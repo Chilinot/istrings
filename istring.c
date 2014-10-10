@@ -1,4 +1,5 @@
 #include "istring.h"
+#include "istring_rep.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -6,11 +7,6 @@
 //Define Macros
 #define START(p) (p - sizeof(int))
 #define STRING(p) (p + sizeof(int))
-
-typedef struct _istring {
-    int length;
-    char string[];
-} _istring, *Istring;
 
 char* istring_mk(const char* str) {
     if(!str) {
@@ -72,6 +68,23 @@ size_t istrfixlen(char* str) {
     }
     
     return (size_t) length;
+}
+
+char* istrslen(char *s, size_t length) {
+    Istring istr = (Istring) START(s);
+
+    if(istr->length >= (int) length) {
+        s[length] = '\0';
+        istr->length = length;
+        return s;
+    }
+    else {
+        char new_str[length];
+        char prev = NULL;
+        for(int i = 0; ;); // TODO
+    }
+
+    return NULL;
 }
 
 size_t istrlen(const char* str) {
