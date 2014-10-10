@@ -5,7 +5,7 @@
 #include <ctype.h>
 
 char* istring_mk(const char* str) {
-    if(!str) {
+    if(str == NULL) {
         return NULL;
     }
 
@@ -14,7 +14,7 @@ char* istring_mk(const char* str) {
     Istring new_istring = malloc(sizeof(_istring) + (sizeof(char) * (str_length + 1)));
     
     // Out of memory?
-    if(!new_istring) {
+    if(new_istring == NULL) {
         return NULL;
     }
 
@@ -26,8 +26,10 @@ char* istring_mk(const char* str) {
 }
 
 void istring_rm(char* str) {
-    Istring istr = START(str);
-    free(istr);
+    if(str != NULL) {
+        Istring istr = START(str);
+        free(istr);
+    }
 }
 
 char* istring_to_string(const char* str) {
@@ -105,11 +107,38 @@ size_t istrlen(const char* str) {
     return (size_t) istr->length;
 }
 
-int main(void) {
-    char* istr = istring_mk("Tjenare");
-    printf("%d\n",(int) istrlen(istr));
-    istrslen(istr, 5);
-    printf("%d\n",(int) istrlen(istr));
-    puts(istr);
+char *istrchr(const char *s, int c) {
+    return NULL;
+}
+
+char *istrrchr(const char *s, int c) {
+    return NULL;
+}
+int istrcmp(const char *s1, const char *s2) {
     return 0;
 }
+int istrncmp(const char *s1, const char *s2, size_t n) {
+    return 0;
+}
+char *istrcpy(char *dst, const char *src) {
+    return NULL;
+}
+char *istrncpy(char *dst, const char *src, size_t n) {
+    return NULL;
+}
+char *istrcat(char *dst, const char *src) {
+    return NULL;
+}
+char *istrncat(char *dst, const char *src, size_t n) {
+    return NULL;
+}
+
+/* int main(void) { */
+/*     char* istr = istring_mk("Tjenare"); */
+/*     printf("%d\n",(int) istrlen(istr)); */
+/*     istrslen(istr, 5); */
+/*     printf("%d\n",(int) istrlen(istr)); */
+/*     puts(istr); */
+/*     istring_rm(istr); */
+/*     return 0; */
+/* } */

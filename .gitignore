@@ -8,3 +8,4 @@ main
 foo
 *.o
 *.plist
+unittests
