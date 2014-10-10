@@ -106,6 +106,10 @@ size_t istrlen(const char* str) {
 }
 
 int main(void) {
-    printf("%d\n",(int) istrlen(istring_mk("Tjenare")));
+    char* istr = istring_mk("Tjenare");
+    printf("%d\n",(int) istrlen(istr));
+    istrslen(istr, 5);
+    printf("%d\n",(int) istrlen(istr));
+    puts(istr);
     return 0;
 }
