@@ -4,10 +4,6 @@
 #include <stdio.h>
 #include <ctype.h>
 
-//Define Macros
-#define START(p) (p - sizeof(int))
-#define STRING(p) (p + sizeof(int))
-
 char* istring_mk(const char* str) {
     if(!str) {
         return NULL;
@@ -30,12 +26,12 @@ char* istring_mk(const char* str) {
 }
 
 void istring_rm(char* str) {
-    Istring istr = (Istring) START(str);
+    Istring istr = START(str);
     free(istr);
 }
 
 char* istring_to_string(const char* str) {
-    Istring istr = (Istring) START(str);
+    Istring istr = START(str);
     
     char* new_str = malloc(sizeof(char) * istr->length);
     if(!new_str) {
@@ -60,7 +56,7 @@ size_t istrfixlen(char* str) {
     }
 
     // Retrieve Istring-structure
-    Istring istr = (Istring) START(str);
+    Istring istr = START(str);
     
     // If length differs, reset it
     if(length != istr->length) {
@@ -71,7 +67,7 @@ size_t istrfixlen(char* str) {
 }
 
 char* istrslen(char *s, size_t length) {
-    Istring istr = (Istring) START(s);
+    Istring istr = START(s);
 
     if(istr->length >= (int) length) {
         s[length] = '\0';
@@ -105,7 +101,7 @@ char* istrslen(char *s, size_t length) {
 }
 
 size_t istrlen(const char* str) {
-    Istring istr = (Istring) START(str);
+    Istring istr = START(str);
     return (size_t) istr->length;
 }
 
