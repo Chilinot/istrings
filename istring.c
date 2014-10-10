@@ -79,9 +79,26 @@ char* istrslen(char *s, size_t length) {
         return s;
     }
     else {
-        char new_str[length];
-        char prev = NULL;
-        for(int i = 0; ;); // TODO
+
+
+        /* // Create new char-array with the length argument as size */
+        /* char new_str[length]; */
+        
+        /* // Copy the old string to the new char-array */
+        /* strcpy((char*) &new_str, istr->string); */
+
+        /* // Retrieve the last char in the old string */
+        /* char last_char = istr->string[istr->length - 1]; */
+
+        /* // Compute length difference */
+        /* int delta = length - istr->length; */
+        
+        /* // Insert the last char until delta is zero */
+        /* while(delta--) { */
+        /*     new_str[length - delta] = last_char; */
+        /* } */
+
+        
     }
 
     return NULL;
