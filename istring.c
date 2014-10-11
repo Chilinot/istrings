@@ -77,29 +77,32 @@ char* istrslen(char *s, size_t length) {
         return s;
     }
     else {
-
-
-        /* // Create new char-array with the length argument as size */
-        /* char new_str[length]; */
+        // Create new char-array with the length argument as size
+        char new_str[length];
         
-        /* // Copy the old string to the new char-array */
-        /* strcpy((char*) &new_str, istr->string); */
+        // Copy the old string to the new char-array
+        strcpy((char*) &new_str, istr->string);
 
-        /* // Retrieve the last char in the old string */
-        /* char last_char = istr->string[istr->length - 1]; */
+        // Retrieve the last char in the old string
+        char last_char = istr->string[(istr->length) - 1];
 
-        /* // Compute length difference */
-        /* int delta = length - istr->length; */
+        // Compute length difference
+        int delta = length - istr->length;
         
-        /* // Insert the last char until delta is zero */
-        /* while(delta--) { */
-        /*     new_str[length - delta] = last_char; */
-        /* } */
+        // Insert the last char until delta is zero
+        while(delta) {
+            new_str[length - delta--] = last_char;
+        }
 
+        // Release memory of old istring
+        istring_rm(s);
         
+        // Make sure the new string is correctly terminated
+        new_str[length] = '\0';
+
+        // Return a new istring instance with the new string
+        return istring_mk(new_str);
     }
-
-    return NULL;
 }
 
 size_t istrlen(const char* str) {
@@ -133,12 +136,20 @@ char *istrncat(char *dst, const char *src, size_t n) {
     return NULL;
 }
 
-/* int main(void) { */
-/*     char* istr = istring_mk("Tjenare"); */
-/*     printf("%d\n",(int) istrlen(istr)); */
-/*     istrslen(istr, 5); */
-/*     printf("%d\n",(int) istrlen(istr)); */
-/*     puts(istr); */
-/*     istring_rm(istr); */
-/*     return 0; */
-/* } */
+int main(void) {
+    char* istr = istring_mk("Tjenare");
+
+    printf("%d\n",(int) istrlen(istr));
+    istrslen(istr, 5);
+
+    printf("%d\n",(int) istrlen(istr));
+    puts(istr);
+
+    istr = istrslen(istr, 10);
+    puts(istr);
+    printf("%d\n", (int) istrlen(istr));
+
+    istring_rm(istr);
+
+    return 0;
+}
