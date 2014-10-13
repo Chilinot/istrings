@@ -110,13 +110,13 @@ size_t istrlen(const char* str) {
     return (size_t) istr->length;
 }
 
-char *istrchr(const char *s, int c) {
-  for(int i = 0; i<(istrlen(s)); i++){
-  if (s[i] == c){
-	return (char*) c; 
-      }
-  } 
-  return NULL;
+char* istrchr(const char *s, int c) {
+    for(int i = 0; i <= (int) istrlen(s); i++){
+        if (s[i] == c){
+            return (char*) s + i; 
+        }
+    } 
+    return NULL;
 }
 
 char *istrrchr(const char *s, int c) {
@@ -141,25 +141,25 @@ char *istrncat(char *dst, const char *src, size_t n) {
     return NULL;
 }
 
-int main(void) {
-    char* istr = istring_mk("Tjenare");
+/* int main(void) { */
+/*     char* istr = istring_mk("Tjenare"); */
 
-    printf("%d\n",(int) istrlen(istr));
-    istrslen(istr, 5);
+/*     printf("%d\n",(int) istrlen(istr)); */
+/*     istrslen(istr, 5); */
 
-    printf("%d\n",(int) istrlen(istr));
-    puts(istr);
+/*     printf("%d\n",(int) istrlen(istr)); */
+/*     puts(istr); */
 
-    istr = istrslen(istr, 10);
-    puts(istr);
-    printf("%d\n", (int) istrlen(istr));
+/*     istr = istrslen(istr, 10); */
+/*     puts(istr); */
+/*     printf("%d\n", (int) istrlen(istr)); */
     
-    char* test = istrchr(istr, 'j');
-    if (test != NULL){
-      printf("The character %c is in istr\n", test);
-    }
+/*     char* test = istrchr(istr, 'j'); */
+/*     if (test != NULL){ */
+/*       printf("The character %c is in istr\n", test); */
+/*     } */
 
-    istring_rm(istr);
+/*     istring_rm(istr); */
 
-    return 0;
-}
+/*     return 0; */
+/* } */
