@@ -111,7 +111,12 @@ size_t istrlen(const char* str) {
 }
 
 char *istrchr(const char *s, int c) {
-    return NULL;
+  for(int i = 0; i<(istrlen(s)); i++){
+  if (s[i] == c){
+	return (char*) c; 
+      }
+  } 
+  return NULL;
 }
 
 char *istrrchr(const char *s, int c) {
@@ -148,6 +153,11 @@ int main(void) {
     istr = istrslen(istr, 10);
     puts(istr);
     printf("%d\n", (int) istrlen(istr));
+    
+    char* test = istrchr(istr, 'j');
+    if (test != NULL){
+      printf("The character %c is in istr\n", test);
+    }
 
     istring_rm(istr);
 
