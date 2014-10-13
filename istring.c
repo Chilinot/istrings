@@ -93,9 +93,6 @@ char* istrslen(char *s, size_t length) {
         while(delta) {
             new_str[length - delta--] = last_char;
         }
-
-        // Release memory of old istring
-        istring_rm(s);
         
         // Make sure the new string is correctly terminated
         new_str[length] = '\0';
