@@ -112,7 +112,7 @@ size_t istrlen(const char* str) {
 
 char* istrchr(const char *s, int c) {
     for(int i = 0; i <= (int) istrlen(s); i++){
-        if (s[i] == c){
+        if (s[i] == c) {
             return (char*) s + i; 
         }
     } 
@@ -122,21 +122,27 @@ char* istrchr(const char *s, int c) {
 char *istrrchr(const char *s, int c) {
     return NULL;
 }
+
 int istrcmp(const char *s1, const char *s2) {
     return 0;
 }
+
 int istrncmp(const char *s1, const char *s2, size_t n) {
     return 0;
 }
+
 char *istrcpy(char *dst, const char *src) {
     return NULL;
 }
+
 char *istrncpy(char *dst, const char *src, size_t n) {
     return NULL;
 }
+
 char *istrcat(char *dst, const char *src) {
     return NULL;
 }
+
 char *istrncat(char *dst, const char *src, size_t n) {
     return NULL;
 }
