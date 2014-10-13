@@ -120,13 +120,13 @@ char* istrchr(const char *s, int c) {
 }
 
 char *istrrchr(const char *s, int c) {
-  char* found = NULL;
-  for(int i = 0; i <= (int) istrlen(s); i++){
-    if (s[i] == c) {
-      found = (char*) s + i;
-    }
-  } 
-  return found;
+    char* found = NULL;
+    for(int i = 0; i <= (int) istrlen(s); i++){
+        if (s[i] == c) {
+            found = (char*) s + i;
+        }
+    } 
+    return found;
 }
 
 int istrcmp(const char *s1, const char *s2) {
