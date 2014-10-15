@@ -127,11 +127,31 @@ char *istrrchr(const char *s, int c) {
 }
 
 int istrcmp(const char *s1, const char *s2) {
-    return 0;
+    return istrncmp(s1, s2, (size_t) istrlen(s1));
 }
 
 int istrncmp(const char *s1, const char *s2, size_t n) {
-    return 0;
+    int s1_len = istrlen(s1);
+    int s2_len = istrlen(s2);
+
+    if(s1_len > s2_len) {
+        return 1;
+    }
+    else if(s1_len < s2_len) {
+        return -1;
+    }
+    else {
+        int i = 0;
+        for(; i < s1_len && i <= (int) n; i++) {
+            if(s2[i] == '\0') return 1;
+            if(s1[i] < s2[i]) return -1;
+            if(s1[i] > s2[i]) return 1;
+        }
+
+        if(s2[i] != '\0') return -1;
+
+        return 0;
+    }
 }
 
 char *istrcpy(char *dst, const char *src) {
@@ -151,24 +171,18 @@ char *istrncat(char *dst, const char *src, size_t n) {
 }
 
 /* int main(void) { */
-/*     char* istr = istring_mk("Tjenare"); */
-
-/*     printf("%d\n",(int) istrlen(istr)); */
-/*     istrslen(istr, 5); */
-
-/*     printf("%d\n",(int) istrlen(istr)); */
-/*     puts(istr); */
-
-/*     istr = istrslen(istr, 10); */
-/*     puts(istr); */
-/*     printf("%d\n", (int) istrlen(istr)); */
     
-/*     char* test = istrchr(istr, 'j'); */
-/*     if (test != NULL){ */
-/*       printf("The character %c is in istr\n", test); */
-/*     } */
+/*     char* s1 = "Tjenare"; */
+/*     char* s2 = "tjenare"; */
+/*     printf("%d\n", strcmp(s1, s2)); */
 
-/*     istring_rm(istr); */
+/*     s1 = "Tjenare"; */
+/*     s2 = "Tjenar"; */
+/*     printf("%d\n", strcmp(s1, s2)); */
+    
+/*     s1 = "Tjenar"; */
+/*     s2 = "Tjenare"; */
+/*     printf("%d\n", strcmp(s1, s2)); */
 
 /*     return 0; */
 /* } */
