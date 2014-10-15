@@ -127,10 +127,6 @@ char *istrrchr(const char *s, int c) {
 }
 
 int istrcmp(const char *s1, const char *s2) {
-    return istrncmp(s1, s2, (size_t) istrlen(s1));
-}
-
-int istrncmp(const char *s1, const char *s2, size_t n) {
     int s1_len = istrlen(s1);
     int s2_len = istrlen(s2);
 
@@ -141,17 +137,33 @@ int istrncmp(const char *s1, const char *s2, size_t n) {
         return -1;
     }
     else {
-        int i = 0;
-        for(; i < s1_len && i <= (int) n; i++) {
-            if(s2[i] == '\0') return 1;
-            if(s1[i] < s2[i]) return -1;
-            if(s1[i] > s2[i]) return 1;
+        while(*s1 != '\0') {
+            if(*s2 == '\0') return 1;
+            if(*s1 < *s2) return -1;
+            if(*s1 > *s2) return 1;
+            s1++;
+            s2++;
         }
 
-        if(s2[i] != '\0') return -1;
+        if(*s2 != '\0') return -1;
 
         return 0;
     }
+}
+
+int istrncmp(const char *s1, const char *s2, size_t n) {
+    
+    // This function can be omptimized!
+
+    for(int i = 0; i < (int) n; i++) {
+        if(s1[i] == '\0' && s2[i] == '\0') return 0;
+        if(s1[i] == '\0') return -1;
+        if(s2[i] == '\0') return 1;
+        if(s1[i] < s2[i]) return -1;
+        if(s1[i] > s2[i]) return 1;
+    }
+
+    return 0;
 }
 
 char *istrcpy(char *dst, const char *src) {

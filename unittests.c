@@ -137,7 +137,7 @@ void testISTRNCMP(void)
 {
     char *str1 = istring_mk("spam ");
     char *str2 = istring_mk("spam");
-    char *str3 = istring_mk("Spam");
+    char *str3 = istring_mk("Spam"); 
     CU_ASSERT(istrncmp(str1, str2, 4) == 0);
     CU_ASSERT(istrncmp(str1, str2, 5) > 0);
     CU_ASSERT(istrncmp(str2, str3, 4) > 0);
