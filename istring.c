@@ -142,8 +142,6 @@ int istrcmp(const char *s1, const char *s2) {
 }
 
 int istrncmp(const char *s1, const char *s2, size_t n) {
-    
-    // This function can be omptimized!
 
     for(int i = 0; i < (int) n; i++) {
         if(s1[i] == '\0' && s2[i] == '\0') return 0;
