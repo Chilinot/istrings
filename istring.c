@@ -155,7 +155,12 @@ int istrncmp(const char *s1, const char *s2, size_t n) {
 }
 
 char *istrcpy(char *dst, const char *src) {
-    return NULL;
+    Istring istr = (Istring) dst;
+
+    istr->length = strlen(src);
+    strcpy(STRING(dst), src);
+
+    return dst;
 }
 
 char *istrncpy(char *dst, const char *src, size_t n) {
