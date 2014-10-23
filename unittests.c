@@ -149,8 +149,17 @@ void testISTRNCMP(void)
 
 void testISTRCPY(void)
 {
-    // You must implement your own!
-    CU_FAIL("Test not implemented yet");
+    char* foo = "Tjenare";
+    char* bar = "Yolo";
+    char foobar[12];
+
+    istrcpy(foobar, foo);
+    CU_ASSERT(strcmp(foobar, foo) == 0);
+    printf("\n%s\n", foobar);
+
+    istrcpy(foobar, bar);
+    CU_ASSERT(strcmp(foobar, bar) == 0);
+    printf("\n%s\n", foobar);
 }
 
 void testISTRNCPY(void)
