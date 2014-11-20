@@ -9,3 +9,5 @@ foo
 *.o
 *.plist
 unittests
+CMakeLists.txt
+.idea

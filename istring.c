@@ -46,9 +46,10 @@ char* istring_to_string(const char* str) {
 }
 
 size_t istrfixlen(char* str) {
-    int length = 0;
+    size_t length = 0;
 
-    // This loop will continue until segfault or nonprintable has been found.
+    // This loop will continue until segfault or non printable has been found.
+    // this loop counts the length and copies it at the same time.
     for(int i = 0 ;; i++) {
         if(!isprint(str[i])) {
             str[i] = '\0'; // Place null-char and exit loop
@@ -62,10 +63,10 @@ size_t istrfixlen(char* str) {
     
     // If length differs, reset it
     if(length != istr->length) {
-        istr->length = length;
+        istr->length = (int) length;
     }
     
-    return (size_t) length;
+    return length;
 }
 
 char* istrslen(char *s, size_t length) {
@@ -167,20 +168,3 @@ char *istrcat(char *dst, const char *src) {
 char *istrncat(char *dst, const char *src, size_t n) {
     return NULL;
 }
-
-/* int main(void) { */
-    
-/*     char* s1 = "Tjenare"; */
-/*     char* s2 = "tjenare"; */
-/*     printf("%d\n", strcmp(s1, s2)); */
-
-/*     s1 = "Tjenare"; */
-/*     s2 = "Tjenar"; */
-/*     printf("%d\n", strcmp(s1, s2)); */
-    
-/*     s1 = "Tjenar"; */
-/*     s2 = "Tjenare"; */
-/*     printf("%d\n", strcmp(s1, s2)); */
-
-/*     return 0; */
-/* } */
