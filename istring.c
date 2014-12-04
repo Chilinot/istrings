@@ -179,12 +179,15 @@ char *istrncpy(char *dst, const char *src, size_t n) {
 
     istr->length = n;
 
-    return STRING(dst);
+    return istr->string;
 }
 
 char *istrcat(char *dst, const char *src) {
+    return istrncat(dst, src, strlen(src));
+}
+
+char *istrncat(char *dst, const char *src, size_t n) {
     size_t dst_length = strlen(dst);
-    size_t src_length = strlen(src);
 
     // Copy the original string in dst to our buffer
     // so we won't overwrite the dst string when we
@@ -194,12 +197,15 @@ char *istrcat(char *dst, const char *src) {
 
     Istring istr = (Istring) dst;
 
-    istr->length = dst_length + src_length;
-    istr->string = strcat(buffer, src);
+    // Store the new length.
+    istr->length = dst_length + n;
 
-    return STRING(dst);
-}
+    // Store the buffer in the struct.
+    // This basically "shifts" all char bytes in dst one int to the right.
+    strcpy(istr->string, buffer);
 
-char *istrncat(char *dst, const char *src, size_t n) {
-    return NULL;
+    // Concatenate the src to the struct.
+    strncat(istr->string, src, n);
+
+    return istr->string;
 }

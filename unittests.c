@@ -74,13 +74,27 @@ void testISTRING_TO_STRING(void) {
 }
 
 void testISTRCAT(void) {
-    // You must implement you own!
-    CU_FAIL("Test not implemented yet");
+    char* foo = "tjenare";
+    char* bar = " hallå";
+
+    char foobar[strlen(foo) + strlen(bar)];
+    strcpy(foobar, foo);
+
+    istrcat(foobar, bar);
+
+    CU_ASSERT(strcmp(STRING(foobar), "tjenare hallå") == 0);
 }
 
 void testISTRNCAT(void) {
-    // You must implement you own!
-    CU_FAIL("Test not implemented yet");
+    char* foo = "tjenare";
+    char* bar = " hallå";
+
+    char foobar[strlen(foo) + strlen(bar)];
+    strcpy(foobar, foo);
+
+    istrncat(foobar, bar, 2);
+
+    CU_ASSERT(strcmp(STRING(foobar), "tjenare h") == 0);
 }
 
 void testISTRCHR(void) {
@@ -137,19 +151,37 @@ void testISTRCPY(void) {
     char foobar[12];
 
     istrcpy(foobar, foo);
-    CU_ASSERT(strcmp(foobar, foo) == 0);
+    CU_ASSERT(strcmp(STRING(foobar), foo) == 0);
 
     istrcpy(foobar, bar);
-    CU_ASSERT(strcmp(foobar, bar) == 0);
+    CU_ASSERT(strcmp(STRING(foobar), bar) == 0);
 }
 
 void testISTRNCPY(void) {
-    // You must implement your own!
-    CU_FAIL("Test not implemented yet");
+    char *foo = "Tjenare";
+    char *bar = "Yolo";
+    char foobar[12];
+
+    istrncpy(foobar, foo, 3);
+    CU_ASSERT(strcmp(STRING(foobar), "Tje") == 0);
+
+    istrncpy(foobar, bar, 3);
+    CU_ASSERT(strcmp(STRING(foobar), "Yol") == 0);
 }
 
 void testISTRFIXLEN(void) {
-    CU_FAIL("Test not implemented yet");
+    char* istr = istring_mk("tjenare");
+
+    Istring _istr = START(istr);
+
+    // Terminate the string in the middle.
+    istr[3] = '\0';
+
+    CU_ASSERT(_istr->length == 7);
+
+    istrfixlen(istr);
+
+    CU_ASSERT(_istr->length == 3);
 }
 
 int main() {
