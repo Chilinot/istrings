@@ -1,7 +1,7 @@
 Istrings
 ========
 Av Erik Stackelberg och Lucas Arnström.
- ### Användning;
+### Användning;
  1. Bygg system med make all.
- ### Redovisade mål;
+### Redovisade mål;
 F13 H20 U55
