@@ -7,3 +7,6 @@ Av Erik Stackelberg och Lucas Arnström.
 ### Redovisade mål:
 
 F13 H20 U55
+
+### Möjliga utökningar:
+ Implementera fler funktioner från c:s strängbibliotek.
