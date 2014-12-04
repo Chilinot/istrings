@@ -3,12 +3,12 @@
 
 // Istring structure
 typedef struct _istring {
-    int length;
+    size_t length;
     char string[];
 } _istring, *Istring;
 
 // Macros
-#define START(p) ((Istring) (p - sizeof(int)))
-#define STRING(p) ((char*) (p + sizeof(int)))
+#define START(p) ((Istring) (p - sizeof(size_t)))
+#define STRING(p) ((char*) (p + sizeof(size_t)))
 
 #endif
