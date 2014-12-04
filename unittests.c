@@ -65,11 +65,16 @@ void testISTRSLEN(void) {
     istrslen(new_str1, 5);
     CU_ASSERT(strcmp(new_str1, "PCMas") == 0);
     CU_ASSERT(strcmp(str2, new_str1) != 0);
+
+    istring_rm(str1);
+    istring_rm(new_str1);
 }
 
 void testISTRING_TO_STRING(void) {
     char *str1 = istring_mk("spam");
-    CU_ASSERT(strcmp(istring_to_string(str1), "spam") == 0);
+    char* new_str = istring_to_string(str1);
+    CU_ASSERT(strcmp(new_str, "spam") == 0);
+    free(new_str);
     istring_rm(str1);
 }
 
@@ -182,6 +187,8 @@ void testISTRFIXLEN(void) {
     istrfixlen(istr);
 
     CU_ASSERT(_istr->length == 3);
+
+    istring_rm(istr);
 }
 
 int main() {
