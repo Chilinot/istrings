@@ -3,7 +3,7 @@
 
 // Istring structure
 typedef struct _istring {
-    int length;
+    size_t length;
     char string[];
 } _istring, *Istring;
 

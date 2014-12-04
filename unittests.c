@@ -138,11 +138,9 @@ void testISTRCPY(void) {
 
     istrcpy(foobar, foo);
     CU_ASSERT(strcmp(foobar, foo) == 0);
-    printf("\n%s\n", foobar);
 
     istrcpy(foobar, bar);
     CU_ASSERT(strcmp(foobar, bar) == 0);
-    printf("\n%s\n", foobar);
 }
 
 void testISTRNCPY(void) {
@@ -194,7 +192,8 @@ int main() {
                     (NULL == CU_add_test(pSuite2, "test of istrncmp()", testISTRNCMP)) ||
                     (NULL == CU_add_test(pSuite2, "test of istrcpy()", testISTRCPY)) ||
                     (NULL == CU_add_test(pSuite2, "test of istrncpy()", testISTRNCPY)) ||
-                    (NULL == CU_add_test(pSuite2, "test of istrslen()", testISTRSLEN))
+                    (NULL == CU_add_test(pSuite2, "test of istrslen()", testISTRSLEN)) ||
+                    (NULL == CU_add_test(pSuite2, "test of isffixlen()", testISTRFIXLEN))
             ) {
         CU_cleanup_registry();
         return CU_get_error();

@@ -10,7 +10,7 @@ char* istring_mk(const char* str) {
     }
 
     // Allocate memory
-    int str_length = strlen(str);
+    size_t str_length = strlen(str);
     Istring new_istring = malloc(sizeof(_istring) + (sizeof(char) * (str_length + 1)));
     
     // Out of memory?
@@ -88,10 +88,10 @@ char* istrslen(char *s, size_t length) {
         char last_char = istr->string[(istr->length) - 1];
 
         // Compute length difference
-        int delta = length - istr->length;
+        int delta = (int) (length - istr->length);
         
         // Insert the last char until delta is zero
-        while(delta) {
+        while(delta > 0) {
             new_str[length - delta--] = last_char;
         }
         
@@ -128,8 +128,8 @@ char *istrrchr(const char *s, int c) {
 }
 
 int istrcmp(const char *s1, const char *s2) {
-    int s1_len = istrlen(s1);
-    int s2_len = istrlen(s2);
+    size_t s1_len = istrlen(s1);
+    size_t s2_len = istrlen(s2);
 
     if(s1_len > s2_len) {
         return 1;
@@ -154,15 +154,50 @@ int istrncmp(const char *s1, const char *s2, size_t n) {
 }
 
 char *istrcpy(char *dst, const char *src) {
-    return NULL;
+    Istring istr = (Istring) dst;
+
+    size_t length = 0;
+    for(; src[length] != '\0'; length++) {
+        istr->string[length] = src[length];
+    }
+
+    // Terminate the string.
+    istr->string[length] = '\0';
+
+    // Store length
+    istr->length = length;
+
+    return STRING(dst);
 }
 
 char *istrncpy(char *dst, const char *src, size_t n) {
-    return NULL;
+    Istring istr = (Istring) dst;
+
+    for(int i = 0; i < n; i++) {
+        istr->string[i] = src[i];
+    }
+
+    istr->length = n;
+
+    return STRING(dst);
 }
 
 char *istrcat(char *dst, const char *src) {
-    return NULL;
+    size_t dst_length = strlen(dst);
+    size_t src_length = strlen(src);
+
+    // Copy the original string in dst to our buffer
+    // so we won't overwrite the dst string when we
+    // "convert" it to an Istring.
+    char buffer[dst_length];
+    strcpy(buffer, dst);
+
+    Istring istr = (Istring) dst;
+
+    istr->length = dst_length + src_length;
+    istr->string = strcat(buffer, src);
+
+    return STRING(dst);
 }
 
 char *istrncat(char *dst, const char *src, size_t n) {
