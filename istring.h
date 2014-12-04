@@ -56,31 +56,22 @@ size_t istrfixlen(char *s);
  */
 char* istrslen(char *s, size_t length);
 
-/*
- * For definitions, see the manual page of respective function on the
- * solaris system and the assignment text.
- * 
- * Think about whether having O(1) access to the length can be used to
- * improve the implementations if the string.h equivalents and use
- * that to guide your implementations!
- */
-
 /**
  * Returns a pointer to the first occurrence of c in string s, if c
- * doesnt exist in s, return NULL;
+ * doesn't exist in s, return NULL;
  *
  * @param s Istring to search.
  * @param c char to search for.
- * @return Address of first occurence of c in s.
+ * @return Address of first occurrence of c in s.
  */
 char *istrchr(const char *s, int c);
 
 /**
- * See istrchr. Return the last occurence instead.
+ * See istrchr. Return the last occurrence instead.
  *
  * @param s Istring to search.
- * @param c Char to seach for.
- * @return Address of last occurence of c in s.
+ * @param c Char to search for.
+ * @return Address of last occurrence of c in s.
  */
 char *istrrchr(const char *s, int c);
 
@@ -105,53 +96,55 @@ int istrncmp(const char *s1, const char *s2, size_t n);
 /**
  * Length of istring.
  *
- * @param s The istring o determine length of.
- * @return Length of istring-
+ * @param s The istring to determine length of.
+ * @return Length of istring.
  */
 size_t istrlen(const char *s);
 
-/*
- * I nedanstående funktioner är dst en pekare till en vanlig
- * sträng och inte en istring. Däremot skall minnesutrymmet
- * "konverteras" till en istring av funktionerna, d.v.s. efter att
- * t.ex. istrcpy anropats bör man vid anropsplatsen göra dst =
- * STRING(dst) för att hoppa över längd-delen av strängen.
-*/
-
 /**
- * Copies a dst string to src and makes it an istring.
+ * Copies a src string to dst and makes dst an istring.
+ * Creates a new Istring instance at dst.
  *
- * @param dst String to copy
- * @param src Address to copy to.
- * @return The address to the copied istring.
+ * NOTE: dst must be large enough to fit an istring representation of src.
+ * If this is not the case then program execution can not be predicted!
+ *
+ * @param dst Address to copy to.
+ * @param src String to copy.
+ * @return Pointer to the copied string.
  */
 char *istrcpy(char *dst, const char *src);
 
 /**
-* See istrcpy. Only copies the n first characters.
-*
-* @param dst String to copy. 
-* @param src Address to copy to.
-* @param n The amount of characters to copy.
-* @return The address of the coped istring.
-*/
+ * See istrcpy. Only copies the n first characters.
+ * Creates a new Istring instance at dst.
+ *
+ * @param dst Address to copy to.
+ * @param src String to copy.
+ * @param n The amount of characters to copy.
+ * @return Pointer to the copied string.
+ */
 char *istrncpy(char *dst, const char *src, size_t n);
 
 /**
- * Appends a copy of dst to src and creates and istring from them.
+ * Concatenates src to the end of dst, overwriting the '\0' at the end of dst.
+ * Creates a new Istring instance at dst.
+ *
+ * NOTE: dst must be large enough to fit an istring representation of dst + src.
+ * If this is not the case then program execution can not be predicted!
  *
  *@param dst String to add src to.
- *@param src String to add to src.
- *@return The concatenated istring.
+ *@param src String to add to dst.
+ *@return Pointer to the concatenated string.
  */
 char *istrcat(char *dst, const char *src);
 
 /**
- *See istrcat. Only appends the n first characters of dst.
- * 
+ * See istrcat. Only appends the n first characters of dst.
+ * Creates a new Istring instance at dst.
+ *
  * @param dst String to add src to.
- * @param src String to add to src.
- * @return The concatenated istring.
+ * @param src String to add to dst.
+ * @return Pointer to the concatenated string.
  */
 char *istrncat(char *dst, const char *src, size_t n);
 
